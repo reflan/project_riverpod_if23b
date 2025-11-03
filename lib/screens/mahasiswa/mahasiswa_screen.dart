@@ -5,6 +5,28 @@ import 'package:project_riverpod/providers/mahasiswa_provider.dart';
 
 class MahasiswaScreen extends ConsumerWidget {
   const MahasiswaScreen({super.key});
+  void showOption(BuildContext context, String id, WidgetRef ref) async {
+    var result = await showDialog(
+      context: context,
+      builder:
+          (context) => SimpleDialog(
+            children: [
+              ListTile(onTap: () {}, title: Text('Update')),
+              ListTile(
+                onTap: () {
+                  Navigator.pop(context);
+                  ref.read(MahasiswaProvider.notifier).deleteMahasiswa(id);
+                },
+                title: Text('Delete'),
+              ),
+              ListTile(
+                onTap: () => Navigator.pop(context),
+                title: Text('Close'),
+              ),
+            ],
+          ),
+    );
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -31,7 +53,9 @@ class MahasiswaScreen extends ConsumerWidget {
                         "${(listAllDocs[index].data() as Map<String, dynamic>)["npm"]}",
                       ),
                       trailing: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          showOption(context, listAllDocs[index].id, ref);
+                        },
 
                         icon: Icon(Icons.more_vert),
                       ),

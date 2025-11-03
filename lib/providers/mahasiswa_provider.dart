@@ -10,6 +10,26 @@ class MahasiswaNotifier extends StateNotifier<List<DocumentSnapshot>> {
         .snapshots()
         .map((snapshot) => snapshot.docs);
   }
+
+  Future<void> addMahasiswa(String npm, String nama, String prodi) async {
+    try {
+      await FirebaseFirestore.instance.collection('mahasiswa').add({
+        'npm': npm,
+        'nama': nama,
+        'prodi': prodi,
+      });
+    } catch (e) {
+      print("gagal tambah data mahasiswa: $e");
+    }
+  }
+
+  Future<void> deleteMahasiswa(String id) async {
+    try {
+      await FirebaseFirestore.instance.collection('mahasiswa').doc(id).delete();
+    } catch (e) {
+      print("Error deleting mahasiswa: $e");
+    }
+  }
 }
 
 final MahasiswaProvider =

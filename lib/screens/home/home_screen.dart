@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
 import 'package:project_riverpod/providers/home_provider.dart';
 import 'package:project_riverpod/screens/dashboard_screen.dart';
+import 'package:project_riverpod/screens/mahasiswa/mahasiswa_add_screen.dart';
 import 'package:project_riverpod/screens/mahasiswa/mahasiswa_screen.dart';
 
 class HomeScreen extends ConsumerWidget {
@@ -25,14 +26,35 @@ class DashboardAdmin extends ConsumerWidget {
     final _index = ref.watch(indexProvider);
 
     List<Map> _fragment = [
-      {'title': 'Halaman Utama', 'body': DashboardScreen()},
-      {'title': 'Mahasiswa', 'body': MahasiswaScreen()},
+      {
+        'title': 'Halaman Utama',
+        'body': DashboardScreen(),
+        'add': MahasiswaAddScreen(),
+      },
+      {
+        'title': 'Mahasiswa',
+        'body': MahasiswaScreen(),
+        'add': MahasiswaAddScreen(),
+      },
     ];
 
     return Scaffold(
       appBar: AppBar(
         title: Text(_fragment[_index]['title']),
         backgroundColor: Colors.teal,
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => _fragment[_index]['add'],
+                ),
+              );
+            },
+            icon: Icon(Icons.add_circle_outline),
+          ),
+        ],
       ),
       drawer: drawer(ref, context),
       body: _fragment[_index]['body'],
