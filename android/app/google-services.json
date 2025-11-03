@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "810419962973",
+    "project_id": "if23b-5f076",
+    "storage_bucket": "if23b-5f076.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:810419962973:android:7ea9994c50e78fab9839b4",
+        "android_client_info": {
+          "package_name": "com.example.project_riverpod"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGKKydC5nu8KikTOvPb7X1lRQQ95-WD7U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
